@@ -1,0 +1,54 @@
+@import "./functions";
+
+// DON'T CHANGE THIS
+$constant-width-factor: 34;
+$phi: math.div(1 + math.sqrt(5), 2);
+
+// x-height of the chosen font
+$xh: 0.508;
+$xhcorrection: math.div($xh - ($phi - 1), $phi);
+
+$base-font-size: 14px;
+$content-width: 794px; // a4 size 210mm in pixels
+$large-content-width: math.div($content-width, $phi);
+$small-content-width: $content-width - $large-content-width;
+$baseline-color: rgba(0, 119, 179, 0.2);
+
+$font-sizes: (
+    1: math.round($base-font-size * math.pow($phi, 2)),
+    2: math.round($base-font-size * math.pow(math.sqrt($phi), 3)),
+    3: math.round($base-font-size * math.pow($phi, 1)),
+    4: math.round($base-font-size * math.sqrt($phi)),
+    5: math.round($base-font-size),
+    6: math.round(math.div($base-font-size, math.sqrt($phi))),
+);
+
+$spacers: (
+    1: math.round(math.div(lineheight(), math.pow($phi, 4))),
+    2: math.round(math.div(lineheight(), math.pow($phi, 3))),
+    3: math.round(math.div(lineheight(), math.pow($phi, 2))),
+    4: math.round(math.div(lineheight(), $phi)),
+    5: lineheight(),
+    6: math.round(lineheight() * $phi),
+);
+
+$line-heights: ();
+
+@each $key, $value in $font-sizes {
+    $lhs: ();
+    $map: map-merge($lhs, ($key: (lineheight($value))));
+    $line-heights: map-merge($line-heights, $map);
+}
+
+$icons: location email phone;
+
+$default-line-height: map-get($line-heights, 5);
+
+$bdazzled-blue: hsl(209, 59%, 34%);
+$ivory: hsla(76, 35%, 94%, 1);
+$black-chocolate: hsla(57, 90%, 4%, 1);
+
+$cprogress-color: $bdazzled-blue;
+$cprogress-size: 4;
+
+$bubble-color: $ivory;

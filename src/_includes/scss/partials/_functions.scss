@@ -1,0 +1,50 @@
+@use "sass:list";
+@use "sass:math";
+@use "sass:map";
+
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return math.div($number, ($number * 0 + 1));
+    }
+
+    @return $number;
+}
+
+@function spacing($value) {
+    @if map.has-key($spacers, abs($value)) {
+        @if($value < 0) {
+            @return -1 * map-get($spacers, abs($value));
+        }
+        @return map-get($spacers, $value);
+    }
+    @return math.round(lineheight() * math.pow($phi, $value - length($spacers) + 1))
+}
+
+@mixin spacing($property, $value) {
+    @include pxToRem($property, spacing($value));
+}
+
+@function pxToRem($px) {
+    @if type-of($px) == 'string' {
+        @return $px;
+    }
+    @return #{math.div(strip-unit($px), strip-unit($base-font-size))}rem;
+}
+
+@mixin pxToRem($property: font-size, $px) {
+    #{$property}: $px;
+    @if type-of($px) == 'list' and list-separator($px) == 'space' {
+        $remvalues: ();
+        @each $p in $px {
+            $remvalues: list.append($remvalues, pxToRem($p));
+        }
+        #{$property}: $remvalues;
+    } 
+    @else {
+        #{$property}: #{math.div(strip-unit($px), strip-unit($base-font-size))}rem;
+    }
+}
+
+@function lineheight($fs: $base-font-size) {
+    @return math.round($fs * ((3 - $phi) + math.abs($xhcorrection) + ((2*$phi - 3) * math.div($content-width, $fs * $constant-width-factor))))
+}

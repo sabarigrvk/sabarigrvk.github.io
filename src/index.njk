@@ -1,64 +1,46 @@
 ---
 layout: layouts/base.njk
-name: "[YOUR NAME HERE]"
-title: "[YOUR NAME HERE]’s Résumé"
-subtitle: "[Underwater Basket Weaving and Podcasting]"
-description: "[YOUR NAME HERE] is [DOING IMPRESSIVE AND WONDERFUL THINGS]."
+name: "SABARI VENKATESH G R"
+title: "Sabari’s Résumé"
+photo: "images/photo.jpeg"
+designation: "Frontend Developer"
 summary: I'm the best there is at what I do.
 ---
 
 <header>
-    <h1>{{ name }}</h1>
-    <h2>{{ subtitle }}</h2>
+    <img src="{{photo}}" class="profile__photo" />
+    {% include "layouts/about.njk" %}
 </header>
 
 <main>
-    <section class="contact">
-        <header class="small"><h1>Contact</h1></header>
-        <address>[YOUR CITY]</address>
-
-        <ul>
-            {% for item in contact.items %}
-            <li><a href="{{ item.link }}">{{ item.name }}</a></li>
-            {% endfor %}
-        </ul>
+    <section class="profile__name">
+        <h1 class="h2 text--uppercase color--primary">Sabari Venkatesh</h1>
+        <h2 class="h4">Lead UI Engineer</h2>
     </section>
 
-    <section class="summary">
-        <header class="small"><h1>Summary</h1></header>
-        <p>{{ summary }}</p>
+    <section class="d-grid profile__contact" style="--columns: 2">
+        {% include "layouts/contact.njk" %}
     </section>
 
-    <section class="experience">
-        <header><h1>Experience</h1></header>
-
-        <dl>
-            {% for item in experience.items %}
-            <dt>
-                <span>{{ item.title }}{% if item.company %}; {{ item.company }}{% endif %}</span>
-                <small>{{ item.dates }}</small>
-            </dt>
-            <dd>{{ item.description }}</dd>
-            {% endfor %}
-        </dl>
+    <section class="profile__experience">
+        <h3 class="section__title">Skills</h3>
+        {% include "layouts/contact.njk" %}
     </section>
 
-    <section class="education">
-        <header><h1>Education</h1></header>
-        <dl>
-            {% for item in education.items %}
-            <dt>{{ item.name }}</dt>
-            <dd>{{ item.description }}</dd>
-            {% endfor %}
-        </dl>
+    <section class="">
+        {% include "layouts/contact.njk" %}
     </section>
 
-    <section class="skills">
-        <header><h1>Skills</h1></header>
-        <ul>
-            {% for item in skills.items %}
-            <li>{{ item.name }}</li>
-            {% endfor %}
-        </ul>
+    <section class="">
+        {% include "layouts/contact.njk" %}
+    </section>
+
+    <section class="">
+        {% include "layouts/contact.njk" %}
     </section>
 </main>
+{# 
+{% include "layouts/counter.njk" %} #}
+
+
+{# <div class="x-height">x</div> #}

@@ -1,0 +1,35 @@
+.bubble {
+    @include spacing(border-radius, 2);
+    @include spacing(padding, 5);
+    position: relative;
+    text-align: left;
+    background-color: $bubble-color;
+
+    &::before,
+    &::after {
+        content: "";
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        background-color: $bubble-color;
+    }
+
+    &::before {
+        @include spacing(width, 6);
+        @include spacing(height, 6);
+        @include spacing(top, -4);
+        @include spacing(left, 5);
+        box-shadow: -50px 30px 0 -12px $bubble-color;
+    }
+
+    &::after {
+        @include spacing(bottom, -3);
+        @include spacing(right, 5);
+        @include spacing(width, 5);
+        @include spacing(height, 5);
+        box-shadow: 40px -34px 0 0 $bubble-color, 
+                    -28px -6px 0 -2px $bubble-color,
+                    -24px 17px 0 -6px $bubble-color, 
+                    -5px 25px 0 -10px $bubble-color;
+    }
+}

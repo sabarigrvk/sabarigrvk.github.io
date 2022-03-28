@@ -1,0 +1,5 @@
+<div>
+    {% for item in skills.items %}
+        <div role="progressbar" data-name="{{ item.name }}" style="--value: {{item.percent}}" aria-valuenow="{{item.percent}}" aria-valuemin="0" aria-valuemax="100"></div>
+    {% endfor %}
+</div>

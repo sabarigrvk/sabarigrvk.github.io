@@ -1,20 +1,22 @@
 {
     "items": [
         {
-            "name": "test@example.com",
-            "link": "mailto:test@example.com"
+            "name": "email",
+            "value": "sabari.venkat.88@gmail.com",
+            "link": "mailto:sabari.venkat.88@gmail.com"
         },
         {
-            "name": "Twitter",
-            "link": "https://twitter.com/…"
+            "name": "phone",
+            "value": "9940020802",
+            "link": "tel:9940020802"
         },
         {
-            "name": "GitHub",
-            "link": "https://github.com/…"
+            "name": "github",
+            "link": "https://github.com/sabarigrvk"
         },
         {
-            "name": "CodePen",
-            "link": "https://codepen.io/…"
+            "name": "codepen",
+            "link": "https://codepen.io/sabarigr"
         }
     ]
 }

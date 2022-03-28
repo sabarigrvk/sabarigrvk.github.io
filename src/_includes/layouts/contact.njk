@@ -1,0 +1,6 @@
+{% for item in contact.items %}
+    <div>
+        <i class="icon icon--sm icon--{{item.name}}"></i>
+        <a href="{{ item.link }}">{{ item.value or item.link }}</a>
+    </div>
+{% endfor %}

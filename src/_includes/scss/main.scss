@@ -1,81 +1,203 @@
-// http://thesassway.com/beginner/how-to-structure-a-sass-project
-@import 'partials/reset';
-@import 'modules/all';
-// @import 'partials/breakpoints-display';
+@use "sass:math";
+@import "partials/variables";
+@import "partials/reset";
+@import "partials/functions";
+@import "partials/counter";
+@import "partials/bubble";
+@import "partials/icon";
 
-html { font-size: 16px; }
+html { 
+    font-size: $base-font-size;
+}
+
+html, body {
+    height: 100%;
+}
 
 body {
-    background: $white;
-    padding: 1rem 1rem 8rem;
-    // https://css-tricks.com/snippets/css/system-font-stack/
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-}
-
-.wrapper {
-    max-width: 35rem;
-    margin: 0 auto;
-}
-
-a {
-    &:active {
-        position: relative;
-        top: 1px;
-    }
-
-    &:hover {
-        color: $black;
-        background: $gray-light;
+    font-family: system-ui, BlinkMacSystemFont, Roboto, "Segoe UI", Segoe, "Helvetica Neue", Tahoma, sans-serif;
+    font-size: 100%;
+    @include pxToRem(line-height, $default-line-height);
+    color: $black-chocolate;
+    image-rendering: -webkit-optimize-contrast;
+    &.debug::after {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background: repeating-linear-gradient(to bottom, $baseline-color, $baseline-color 1px, transparent 1px, transparent (lineheight()))
     }
 }
 
-main > * { margin-top: 3rem; }
+@for $i from 1 through 6 {
+    h#{$i},
+    .h#{$i} {
+        @include pxToRem(font-size, map-get($font-sizes, $i));
+        @include pxToRem(line-height, map-get($line-heights, $i));
+        margin: 0;
+    }
 
-section header {
-    h1 {
-        font-size: 1.1rem;
+    .spacer#{$i} {
+        @include pxToRem(margin-bottom, map-get($spacers, $i));
+    }
+}
+
+.text {
+    &--center {
+        text-align: center;
+    }
+    &--uppercase {
         text-transform: uppercase;
     }
+}
 
-    &.small h1 {
-        font-size: 0.8rem;
-        color: $gray-medium;
+.color {
+    &--body {
+        color: $black-chocolate;
+    }
+    &--primary {
+        color: $bdazzled-blue;
+    }
+    &--secondary {
+        color: $ivory;
     }
 }
 
-h2 {
-    font-size: 1.2rem;
-    font-weight: normal;
-}
-
-p,
-dd { line-height: 1.4rem; }
-
-dt {
-    @include gradient(lighten($gray-light, 10%));
-
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-between;
+.d-inline-grid {
+    display: inline-grid;
     align-items: center;
-    padding: 0.6rem 1rem;
-    border-radius: 0.5rem;
-
-    &:first-of-type { margin-top: 0; }
-
-    small { white-space: nowrap; }
+    @include pxToRem(grid-template-columns, spacing(5) auto);
 }
 
-dd {
-    margin: 1rem 0 0;
-    padding: 0 1rem;
+.d-inline-flex {
+    display: inline-flex !important;
+    gap: var(--gap, 0);
+    > *:not([class]) {
+        flex-basis: auto;
+    }
 }
 
-.contact ul,
-.skills ul { @include horizontal-list; }
-
-hr {
-    margin: 4rem 0;
-    border: 0;
-    border-top: 0.25rem solid $gray-light;
+.d-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--columns, 2), 1fr);
+    @include spacing(gap, 3);
 }
+
+header {
+    display: grid;
+    justify-content: center;
+    align-items: flex-start;
+    @include spacing(height, 10);
+    @include spacing(padding, 5);
+    @include pxToRem(grid-template-columns, $small-content-width $large-content-width);
+    @include spacing(gap, 6);
+    background-color: $bdazzled-blue;
+}
+
+main {
+    display: grid;
+    justify-content: center;
+    align-items: flex-start;
+    grid-template-areas: "name contact"
+                         "skills skills"
+                         "experience experience"
+                         "software hobbies";
+    @include pxToRem(grid-template-columns, $small-content-width $large-content-width);
+    @include spacing(column-gap, 6);
+    @include spacing(row-gap, 5);
+    @include spacing(padding-top, 4);
+    // border-width: 0;
+    // border-bottom: 1px solid;
+    // border-image: repeating-linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 5%, rgba(0,0,0,0) 5%, rgba(0,0,0,0) 15%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 40%);
+    > section:first-child {
+        @include spacing(padding-top, 6);
+        grid-area: name;
+    }
+    > section:nth-child(2) {
+        grid-area: contact;
+    }
+
+    > section:nth-child(3) {
+        grid-area: skills;
+    }
+
+    > section:nth-child(4) {
+        grid-area: experience;
+    }
+
+    > section:nth-child(5) {
+        grid-area: software;
+    }
+
+    > section:nth-child(5) {
+        grid-area: hobbies;
+    }
+}
+
+.section {
+    &__title {
+        display: flex;
+        align-items: center;
+        color: $bdazzled-blue;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        @include spacing(gap, 3);
+        &::after {
+            content: "";
+            flex: 1;
+            border-width: 0;
+            border-top: 1px solid;
+            border-image: linear-gradient(90deg, $black-chocolate 0%, $black-chocolate 2%, transparent 2%, transparent 3%, $black-chocolate 3%, $black-chocolate 97%, transparent 97%, transparent 98%, $black-chocolate 98%) 100% 0
+        }
+    }
+}
+
+.profile {
+    &__photo {
+        min-height: 0;
+        align-self: flex-start;
+        border-radius: 50%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        align-self: flex-start;
+    }
+}
+
+// CALCULATE X-HEIGHT OF A FONT
+.x-height {
+    font-size: 1000px;
+    &::before {
+        content: "";
+        width: 30px;
+        height: 524px;
+        background: red;
+        display: inline-block;
+        margin-right: -10px;
+    }
+}
+
+p {
+    font-size: map-get($font-sizes, 1);
+    line-height: map-get($line-heights, 1);
+    margin: 0;
+}
+
+// calculate x height of a font
+
+/*
+    eg., 
+    h1 {
+        font-size: 1000px;
+
+        &::before {
+            content: "";
+            width: 30px;
+            height: 524px; // increase this height to be as tall as the small letter x. here the x height is 0.524
+            background: red;
+            display: inline-block;
+            margin-right: -10px;
+        }
+    }
+*/

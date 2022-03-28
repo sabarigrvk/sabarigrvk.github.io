@@ -1,7 +1,8 @@
 {
     "items": [
-        { "name": "Cat Wrangling" },
-        { "name": "Basket Weaving" },
-        { "name": "Git" }
+        { "name": "CSS", "percent": "90" },
+        { "name": "HTML", "percent": "50" },
+        { "name": "Git", "percent": "70" },
+        { "name": "Javascript", "percent": "75" }
     ]
 }

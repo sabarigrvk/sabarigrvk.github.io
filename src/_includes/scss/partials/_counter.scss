@@ -1,0 +1,35 @@
+@property --percent {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
+}
+
+[role="progressbar"] {
+    font-size: 1rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    @include pxToRem(width, $cprogress-size);
+    @include pxToRem(height, $cprogress-size);
+    position: relative;
+    outline: 1px solid $cprogress-color;
+    outline-offset: -0.5em;
+    background: radial-gradient(closest-side,white 80%,transparent 0 99.99%,white 0),
+        conic-gradient($cprogress-color calc(var(--percent) * 1%), white 0);
+    animation: counter 2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    counter-reset: percent var(--percent);
+
+    &::after {
+        content: attr(data-name) "\a" counter(percent) "%";
+        white-space: pre;
+    }
+}
+
+@keyframes counter {
+    from {
+        --percent: 0;
+    }
+    to {
+        --percent: var(--value);
+    }
+}

@@ -1,0 +1,38 @@
+@mixin icon($index: null, $size: 100) {
+    line-height: 1;
+    vertical-align: middle;
+    &::before {
+        @if($index == null and $size == 100) {
+            width: var(--size);
+            height: var(--size);
+            content: "";
+            display: inline-block;
+            vertical-align: middle;
+    
+            $columns: 3; // Number of icons going across
+            background-image: url("/images/icons.png");
+            background-size: 100%;
+        }
+
+        @if($index) {
+            background-position: 0 calc(var(--size) * -#{$index - 1});
+        }
+    }
+}
+
+.icon {
+    @include icon();
+    @each $icon in $icons {
+        $index: index($icons, $icon);
+        
+        &--#{$icon} {
+            @include icon($index);
+        }
+    }
+    &--sm {
+        --size: 30px;
+    }
+    &--md {
+        --size: 60px;
+    }
+}
