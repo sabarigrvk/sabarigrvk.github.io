@@ -1,6 +1,5 @@
 name: Resume build
 
-
 on:
   push:
     branches:

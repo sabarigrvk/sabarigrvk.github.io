@@ -1,0 +1,409 @@
+/*** The new CSS Reset - version 1.2.0 (last updated 23.7.2021) ***/
+/* Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property */
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+Remove list styles (bullets/numbers)
+in case you use it with normalize.css
+*/
+ol, ul {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
+/* Removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* Revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+@property --percent {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+[role=progressbar] {
+  font-size: 1rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  width: 4;
+  width: 0.2857142857rem;
+  height: 4;
+  height: 0.2857142857rem;
+  position: relative;
+  outline: 1px solid #24588a;
+  outline-offset: -0.5em;
+  background: radial-gradient(closest-side, white 80%, transparent 0 99.99%, white 0), conic-gradient(#24588a calc(var(--percent) * 1%), white 0);
+  animation: counter 2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  counter-reset: percent var(--percent);
+}
+[role=progressbar]::after {
+  content: attr(data-name) "\a" counter(percent) "%";
+  white-space: pre;
+}
+
+@keyframes counter {
+  from {
+    --percent: 0;
+  }
+  to {
+    --percent: var(--value);
+  }
+}
+.bubble {
+  border-radius: 6px;
+  border-radius: 0.4285714286rem;
+  padding: 26px;
+  padding: 1.8571428571rem;
+  position: relative;
+  text-align: left;
+  background-color: #f2f5ea;
+}
+.bubble::before, .bubble::after {
+  content: "";
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  background-color: #f2f5ea;
+}
+.bubble::before {
+  width: 42px;
+  width: 3rem;
+  height: 42px;
+  height: 3rem;
+  top: -16px;
+  top: -1.1428571429rem;
+  left: 26px;
+  left: 1.8571428571rem;
+  box-shadow: -50px 30px 0 -12px #f2f5ea;
+}
+.bubble::after {
+  bottom: -10px;
+  bottom: -0.7142857143rem;
+  right: 26px;
+  right: 1.8571428571rem;
+  width: 26px;
+  width: 1.8571428571rem;
+  height: 26px;
+  height: 1.8571428571rem;
+  box-shadow: 40px -34px 0 0 #f2f5ea, -28px -6px 0 -2px #f2f5ea, -24px 17px 0 -6px #f2f5ea, -5px 25px 0 -10px #f2f5ea;
+}
+
+.icon {
+  line-height: 1;
+  vertical-align: middle;
+}
+.icon::before {
+  width: var(--size);
+  height: var(--size);
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url("/images/icons.png");
+  background-size: 100%;
+}
+.icon--location {
+  line-height: 1;
+  vertical-align: middle;
+}
+.icon--location::before {
+  background-position: 0 calc(var(--size) * -0);
+}
+.icon--email {
+  line-height: 1;
+  vertical-align: middle;
+}
+.icon--email::before {
+  background-position: 0 calc(var(--size) * -1);
+}
+.icon--phone {
+  line-height: 1;
+  vertical-align: middle;
+}
+.icon--phone::before {
+  background-position: 0 calc(var(--size) * -2);
+}
+.icon--sm {
+  --size: 30px;
+}
+.icon--md {
+  --size: 60px;
+}
+
+html {
+  font-size: 14px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, BlinkMacSystemFont, Roboto, "Segoe UI", Segoe, "Helvetica Neue", Tahoma, sans-serif;
+  font-size: 100%;
+  line-height: 26px;
+  line-height: 1.8571428571rem;
+  color: #131201;
+  image-rendering: -webkit-optimize-contrast;
+}
+body.debug::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: repeating-linear-gradient(to bottom, rgba(0, 119, 179, 0.2), rgba(0, 119, 179, 0.2) 1px, transparent 1px, transparent 26px);
+}
+
+h1,
+.h1 {
+  font-size: 37px;
+  font-size: 2.6428571429rem;
+  line-height: 59px;
+  line-height: 4.2142857143rem;
+  margin: 0;
+}
+
+.spacer1 {
+  margin-bottom: 4px;
+  margin-bottom: 0.2857142857rem;
+}
+
+h2,
+.h2 {
+  font-size: 29px;
+  font-size: 2.0714285714rem;
+  line-height: 48px;
+  line-height: 3.4285714286rem;
+  margin: 0;
+}
+
+.spacer2 {
+  margin-bottom: 6px;
+  margin-bottom: 0.4285714286rem;
+}
+
+h3,
+.h3 {
+  font-size: 23px;
+  font-size: 1.6428571429rem;
+  line-height: 39px;
+  line-height: 2.7857142857rem;
+  margin: 0;
+}
+
+.spacer3 {
+  margin-bottom: 10px;
+  margin-bottom: 0.7142857143rem;
+}
+
+h4,
+.h4 {
+  font-size: 18px;
+  font-size: 1.2857142857rem;
+  line-height: 32px;
+  line-height: 2.2857142857rem;
+  margin: 0;
+}
+
+.spacer4 {
+  margin-bottom: 16px;
+  margin-bottom: 1.1428571429rem;
+}
+
+h5,
+.h5 {
+  font-size: 14px;
+  font-size: 1rem;
+  line-height: 26px;
+  line-height: 1.8571428571rem;
+  margin: 0;
+}
+
+.spacer5 {
+  margin-bottom: 26px;
+  margin-bottom: 1.8571428571rem;
+}
+
+h6,
+.h6 {
+  font-size: 11px;
+  font-size: 0.7857142857rem;
+  line-height: 21px;
+  line-height: 1.5rem;
+  margin: 0;
+}
+
+.spacer6 {
+  margin-bottom: 42px;
+  margin-bottom: 3rem;
+}
+
+.text--center {
+  text-align: center;
+}
+.text--uppercase {
+  text-transform: uppercase;
+}
+
+.color--body {
+  color: #131201;
+}
+.color--primary {
+  color: #24588a;
+}
+.color--secondary {
+  color: #f2f5ea;
+}
+
+.d-inline-grid {
+  display: inline-grid;
+  align-items: center;
+  grid-template-columns: 26px auto;
+  grid-template-columns: 1.8571428571rem auto;
+}
+
+.d-inline-flex {
+  display: inline-flex !important;
+  gap: var(--gap, 0);
+}
+.d-inline-flex > *:not([class]) {
+  flex-basis: auto;
+}
+
+.d-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--columns, 2), 1fr);
+  gap: 10px;
+  gap: 0.7142857143rem;
+}
+
+header {
+  display: grid;
+  justify-content: center;
+  align-items: flex-start;
+  height: 288px;
+  height: 20.5714285714rem;
+  padding: 26px;
+  padding: 1.8571428571rem;
+  grid-template-columns: 303.2810129326px 490.7189870674px;
+  grid-template-columns: 21.6629294952rem 35.0513562191rem;
+  gap: 42px;
+  gap: 3rem;
+  background-color: #24588a;
+}
+
+main {
+  display: grid;
+  justify-content: center;
+  align-items: flex-start;
+  grid-template-areas: "name contact" "skills skills" "experience experience" "software hobbies";
+  grid-template-columns: 303.2810129326px 490.7189870674px;
+  grid-template-columns: 21.6629294952rem 35.0513562191rem;
+  column-gap: 42px;
+  column-gap: 3rem;
+  row-gap: 26px;
+  row-gap: 1.8571428571rem;
+  padding-top: 16px;
+  padding-top: 1.1428571429rem;
+}
+main > section:first-child {
+  padding-top: 42px;
+  padding-top: 3rem;
+  grid-area: name;
+}
+main > section:nth-child(2) {
+  grid-area: contact;
+}
+main > section:nth-child(3) {
+  grid-area: skills;
+}
+main > section:nth-child(4) {
+  grid-area: experience;
+}
+main > section:nth-child(5) {
+  grid-area: software;
+}
+main > section:nth-child(5) {
+  grid-area: hobbies;
+}
+
+.section__title {
+  display: flex;
+  align-items: center;
+  color: #24588a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  gap: 10px;
+  gap: 0.7142857143rem;
+}
+.section__title::after {
+  content: "";
+  flex: 1;
+  border-width: 0;
+  border-top: 1px solid;
+  border-image: linear-gradient(90deg, #131201 0%, #131201 2%, transparent 2%, transparent 3%, #131201 3%, #131201 97%, transparent 97%, transparent 98%, #131201 98%) 100% 0;
+}
+
+.profile__photo {
+  min-height: 0;
+  align-self: flex-start;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  align-self: flex-start;
+}
+
+.x-height {
+  font-size: 1000px;
+}
+.x-height::before {
+  content: "";
+  width: 30px;
+  height: 524px;
+  background: red;
+  display: inline-block;
+  margin-right: -10px;
+}
+
+p {
+  font-size: 37px;
+  line-height: 59px;
+  margin: 0;
+}
+
+/*
+    eg., 
+    h1 {
+        font-size: 1000px;
+
+        &::before {
+            content: "";
+            width: 30px;
+            height: 524px; // increase this height to be as tall as the small letter x. here the x height is 0.524
+            background: red;
+            display: inline-block;
+            margin-right: -10px;
+        }
+    }
+*/
