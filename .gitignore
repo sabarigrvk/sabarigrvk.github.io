@@ -1,4 +1,2 @@
 node_modules/
-dist/
-gh-pages
-gh-pages.pub
+.DS_Store

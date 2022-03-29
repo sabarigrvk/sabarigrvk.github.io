@@ -1,16 +1,15 @@
 {
-  "name": "resume-template",
+  "name": "sabarigrvk.github.io",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx eleventy --serve",
-    "build": "env NODE_ENV=production npx eleventy",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "eleventy --serve",
+    "build": "NODE_ENV=production eleventy"
   },
   "keywords": [],
-  "author": "Trey Piepmeier",
-  "license": "SEE LICENSE IN `LICENSE`",
+  "author": "sabari",
+  "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^1.0.0",
     "sass": "^1.32.8",
