@@ -11,7 +11,7 @@
   "author": "sabari",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy": "^2.0.0",
     "sass": "^1.32.8",
     "stylelint-config-standard": "^25.0.0"
   }
